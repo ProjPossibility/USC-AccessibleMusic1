@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   def play
     # identifiers = params[:friend_tokens].split(",")
     # friend_list = current_user.friends.reject {|item| !identifiers.include? item.identifier}
-    # common_artist = Hash.new
+    common_artist = Hash.new
     # friend_list.each do |friend|
     #   user = FbGraph::User.fetch(friend.identifier, :access_token => friend.access_token)
     #   user.music.each do |music|
