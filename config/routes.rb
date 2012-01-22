@@ -10,6 +10,9 @@ Quickstream::Application.routes.draw do
   end  
   
   match 'facebooks/:id/save_phone' => 'facebooks#save_phone'
+
+  match 'call/call' => 'call#call'
+  match 'call/sms' => 'call#sms'
   
   
   # The priority is based upon order of creation:
