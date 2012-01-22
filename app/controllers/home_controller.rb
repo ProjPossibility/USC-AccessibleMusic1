@@ -33,12 +33,11 @@ class HomeController < ApplicationController
     #   #end
     # end
     # 
-    # sort_common_artists  = common_artist.sort_by {|key, values| -1*values}
     
-    sort_common_artists = []
+    common_artist[params[:query]] = 6
     
-    sort_common_artists << params[:query]
-    
+    sort_common_artists  = common_artist.sort_by {|key, values| -1*values}
+            
     @tracklist = Array.new  
     counter = 0
     sort_common_artists.take(30).each do |pair|
