@@ -1,2 +1,33 @@
-<h1>Home#play</h1>
-<p>Find me in app/views/home/play.html.erb</p>
+<%song_ids = []%>
+<% @tracklist.each do |track| %> 
+	<% song_ids << track[3].to_s%>
+<%end%>
+<div id="container">
+	<div id="main" style="text-align: center;">
+		<object align="center" style="padding-top: 10px" width="250" height="<%= [250 + ((@tracklist.count/4)-1)*75, 600].min %>" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="gsManySongs31673607280782744" name="gsManySongs31673607280782744">
+			<param name="movie" value="http://grooveshark.com/widget.swf" />
+			<param name="wmode" value="window" /><param name="allowScriptAccess" value="always" />
+			<param name="flashvars" value="hostname=cowbell.grooveshark.com&songIDs=<%= song_ids.join(',') %>&bbg=4a8f2c&bth=4a8f2c&pfg=4a8f2c&lfg=4a8f2c&bt=FFFFFF&pbg=FFFFFF&pfgh=FFFFFF&si=FFFFFF&lbg=FFFFFF&lfgh=FFFFFF&sb=FFFFFF&bfg=666666&pbgh=666666&lbgh=666666&sbh=666666&p=0" />
+			<!--[if !IE]>-->
+			<object type="application/x-shockwave-flash" data="http://grooveshark.com/widget.swf" width="250" height="<%= [250 + ((@tracklist.count/4)-1)*75, 600].min %>">
+				<param name="wmode" value="window" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="hostname=cowbell.grooveshark.com&songIDs=<%= song_ids.join(',') %>&bbg=4a8f2c&bth=4a8f2c&pfg=4a8f2c&lfg=4a8f2c&bt=FFFFFF&pbg=FFFFFF&pfgh=FFFFFF&si=FFFFFF&lbg=FFFFFF&lfgh=FFFFFF&sb=FFFFFF&bfg=666666&pbgh=666666&lbgh=666666&sbh=666666&p=0" />
+				</object>
+				<!--<![endif]-->
+				</object>
+
+<br />
+<br />
+<br />
+
+<hr style="border: none; border-bottom-color: rgba(0, 0, 0, 0.1); box-shadow: 0 1px 0 #fff;"/>
+<h2>Open in <!-- Spotify -->Grooveshark!</h2>
+<hr style="border: none; border-bottom-color: rgba(0, 0, 0, 0.1); box-shadow: 0 1px 0 #fff;"/>
+
+<% @tracklist.each do |track| %> 
+	<%= link_to track[0].to_s + " - " + track[1].to_s, track[2].to_s, :class => 'track' %>
+	<br />
+<%end%>
+	</div>
+</div>
+
+<%= @parsed_json.to_s %>
