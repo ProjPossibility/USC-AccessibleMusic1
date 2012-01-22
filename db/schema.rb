@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122032434) do
+ActiveRecord::Schema.define(:version => 20120122050632) do
 
   create_table "facebooks", :force => true do |t|
     t.string   "identifier"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20120122032434) do
     t.integer  "playlist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "artist"
+    t.string   "url"
   end
 
   add_index "songs", ["playlist_id"], :name => "index_songs_on_playlist_id"
