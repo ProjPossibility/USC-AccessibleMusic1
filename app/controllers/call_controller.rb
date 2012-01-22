@@ -22,18 +22,18 @@ class CallController < ApplicationController
     body = params["Body"].downcase.strip
     number = params["From"]
     if body.match(/^play/)
+      user = Facebook.find_by_cell(number)
       new_body = body.sub('play','').strip
       if new_body.match(/^playlist/)
         new_body = new_body.sub('playlist','').strip
-        user = Facebook.find_by_cell(number)
         playlist = user.playlists.find_by_name(new_body)
         if playlist
-          @body = "http://quickstream.heroku.com/home/play?playlist_id=#{CGI.escape playlist.id.to_s}&user=#{user.identifier}"
+          @body = "http://quickstream.heroku.com/home/play?playlist_id=#{CGI.escape playlist.id.to_s}&user=#{user.try(:identifier)}"
         else
           @body = "Playlist does not exist!"
         end
       else
-        @body = "http://quickstream.heroku.com/home/play?query=#{CGI.escape new_body}&user=#{user.identifier}"
+        @body = "http://quickstream.heroku.com/home/play?query=#{CGI.escape new_body}&user=#{user.try(:identifier)}"
       end
     elsif body.match(/^create/)
       new_body = body.sub('create','').strip
