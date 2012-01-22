@@ -17,5 +17,6 @@ class CallController < ApplicationController
   
   def sms
     puts "RECEIVED A TEXT"
+    puts params.to_s
   end
 end
