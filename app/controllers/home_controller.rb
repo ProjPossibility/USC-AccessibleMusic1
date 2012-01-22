@@ -86,11 +86,11 @@ class HomeController < ApplicationController
         @tracklist << [track.name, track.artist, track.url, track.tinysong_id] # FOR TINYSONG
       end
       @playlist_title = playlist.name
-      # c = Curl::Easy.http_post("https://graph.facebook.com/#{params[:user]}/quickstream:listen_to",
-      #                          Curl::PostField.content('playlist', "http://quickstream.heroku.com/home/play?playlist_id=#{params[:playlist_id]}"),
-      #                          Curl::PostField.content('access_token', 'AAAC3O7zjCaYBALJEKSRZCZAA4UbMDNksd0JRiMybumZCPfvum4dEduZCEw5JNH246lt9Atzqw4yddBhvJBIhQyf1rkSYTD0ZCrJYkoKWiU93UOkpCNnEZB'))
-      # 
-      # puts "HEREEEE" + c.body_str                         
+      c = Curl::Easy.http_post("https://graph.facebook.com/#{params[:user]}/quickstream:listen_to",
+                               Curl::PostField.content('playlist', "http://quickstream.heroku.com/home/play?playlist_id=#{params[:playlist_id]}"),
+                               Curl::PostField.content('access_token', 'AAAC3O7zjCaYBALJEKSRZCZAA4UbMDNksd0JRiMybumZCPfvum4dEduZCEw5JNH246lt9Atzqw4yddBhvJBIhQyf1rkSYTD0ZCrJYkoKWiU93UOkpCNnEZB'))
+      
+      puts "HEREEEE" + c.body_str                         
       
     end    
     
