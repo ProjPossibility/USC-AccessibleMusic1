@@ -25,13 +25,13 @@ class CallController < ApplicationController
     if body.match(/^play/)
       @new_body = body.sub('play','').strip
       if @new_body.match(/^playlist/)
-        @new_body = new_body.sub('playlist','').strip
+        @new_body = @new_body.sub('playlist','').strip
       end
     elsif body.match(/^create/)
       @new_body = body.sub('create','').strip
     elsif body.match(/^add/)
       @new_body = body.sub('add','').strip
-      @new_body_array = new_body.sub('to playlist').strip
+      @new_body_array = @new_body.sub('to playlist').strip
     end
     # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
     # @client.account.sms.messages.create(
