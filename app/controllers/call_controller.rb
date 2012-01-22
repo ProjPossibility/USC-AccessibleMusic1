@@ -48,7 +48,7 @@ class CallController < ApplicationController
       user = Facebook.find_by_cell(number)
       playlist = user.playlists.find_or_create_by_name(playlist_title)
       song_json = get_song(song_title)
-      song = playlist.songs.find_or_create_by_tinysong_id(song_json['SongID'])
+      song = playlist.songs.find_or_create_by_tinysong_id(song_json['SongID'].to_s)
       song.name = song_json['SongName']
       song.artist = song_json['ArtistName']
       song.url = song_json['Url']

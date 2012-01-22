@@ -78,7 +78,7 @@ class HomeController < ApplicationController
       #   track << parsed_json['SongID'] # FOR SPOTIFY
       # end # FOR SPOTIFY
     else
-      @tracklist = Array.new 
+      @tracklist = Array.new
       playlist = Playlist.find(params[:playlist_id].to_i)
       playlist.songs.each do |track| # FOR TINYSONG
         @tracklist << [track.name, track.artist, track.url, track.tinysong_id] # FOR TINYSONG
