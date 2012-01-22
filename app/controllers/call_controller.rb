@@ -19,8 +19,8 @@ class CallController < ApplicationController
   
   # {"AccountSid"=>"AC5cb9a6dcffb746ada26419b0b9621989", "Body"=>"test", "ToZip"=>"92677", "FromState"=>"CA", "ToCity"=>"LAGUNA NIGUEL", "SmsSid"=>"SM7ac62fadfde51b614605c1e830c9d395", "ToState"=>"CA", "To"=>"+19492720608", "ToCountry"=>"US", "FromCountry"=>"US", "SmsMessageSid"=>"SM7ac62fadfde51b614605c1e830c9d395", "ApiVersion"=>"2010-04-01", "FromCity"=>"IRVINE", "SmsStatus"=>"received", "From"=>"+19492664898", "FromZip"=>"92606", "controller"=>"call", "action"=>"sms"}
   def sms
-    body = params["Body"].downcase.strip;
-    number = params["From"];
+    body = params["Body"].downcase.strip
+    number = params["From"]
     if body.match(/^play/)
       new_body = body.sub('play','').strip
       if new_body.match(/^playlist/)
@@ -55,12 +55,12 @@ class CallController < ApplicationController
       song.save!
       @body = "Song #{song_json['SongName']} was added to #{playlist_title}!"      
     end
-    # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
-    # @client.account.sms.messages.create(
-    #   :from => "+19492720608",
-    #   :to => number,
-    #   :body => @body
-    # )
+    @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
+    @client.account.sms.messages.create(
+      :from => "+19492720608",
+      :to => number,
+      :body => @body
+    )
   end
 end
 

@@ -1,3 +1,11 @@
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# quickstream: http://ogp.me/ns/fb/quickstream#">
+ <meta property="fb:app_id"      content="201467199949222" /> 
+ <meta property="og:type"        content="quickstream:playlist" /> 
+ <meta property="og:url"         content="<%= "http://quickstream.heroku.com" + request.fullpath %>" /> 
+ <meta property="og:title"       content="<%= @playlist_title %>" /> 
+ <meta property="og:description" content="" /> 
+ <meta property="og:image"       content="https://s-static.ak.fbcdn.net/images/devsite/attachment_blank.png" />
+
 <%song_ids = []%>
 <% @tracklist.each do |track| %> 
 	<% song_ids << track[3].to_s%>
@@ -17,6 +25,7 @@
 
 <br />
 <br />
+<fb:like href="<%= "http://quickstream.heroku.com" + request.fullpath %>" send="true" width="323" show_faces="true" ></fb:like>
 <br />
 
 <hr style="border: none; border-bottom-color: rgba(0, 0, 0, 0.1); box-shadow: 0 1px 0 #fff;"/>
