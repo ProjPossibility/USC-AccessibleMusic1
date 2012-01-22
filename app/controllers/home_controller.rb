@@ -38,6 +38,8 @@ class HomeController < ApplicationController
       common_artist[params[:query]] = 6
     
       sort_common_artists  = common_artist.sort_by {|key, values| -1*values}
+      
+      @playlist_title = params[:query]
             
       @tracklist = Array.new  
       counter = 0
@@ -83,6 +85,13 @@ class HomeController < ApplicationController
       playlist.songs.each do |track| # FOR TINYSONG
         @tracklist << [track.name, track.artist, track.url, track.tinysong_id] # FOR TINYSONG
       end
+      @playlist_title = playlist.name
+      c = Curl::Easy.http_post("https://graph.facebook.com/#{params[:user]}/quickstream:listen_to",
+                               Curl::PostField.content('playlist', "http://quickstream.heroku.com/home/play?playlist_id=#{params[:playlist_id]}"),
+                               Curl::PostField.content('access_token', 'AAAC3O7zjCaYBALJEKSRZCZAA4UbMDNksd0JRiMybumZCPfvum4dEduZCEw5JNH246lt9Atzqw4yddBhvJBIhQyf1rkSYTD0ZCrJYkoKWiU93UOkpCNnEZB'))
+      
+      puts "HEREEEE" + c.body_str                         
+      
     end    
     
   	respond_to do |format|
