@@ -6,6 +6,17 @@
 			<%= text_field_tag :phone, nil, :placeholder => 'Enter your phone number' , :value => (current_user.cell.gsub('+1','') if current_user.cell) %> <br/>
 			<%= submit_tag "Save", :class => "button grey play" %>
 		<% end %>
+		<p> Use voice command (like Siri on iPhone) to text our app at <span class="strong">(949) 272-0608</span> with following commands: </p>
+		
+		<p>	To play songs text 'play' followed by the name of the song/artist/playlist you want to listen to. </p>
+
+		<p>	To create a playlist text 'create' followed by the name of the playlist you want to create </p>
+
+		<p>	To add a song to a playlist text 'add' followed by the name of the song you want to add followed
+				by 'to' and then the name of the playlist you'd like to add it to. </p>
+				
+		<p> Add our number <span class="strong">(949) 272-0608</span> under <span class="strong">Quick Stream</span> to your contacts for easy access </p>
+				
 
 	<% else %>
         <P style="font-size: 150%"><span class="strong">QuickStream</span> allows you to voice command your music on the  <span class="strong">fly</span>.</p>
