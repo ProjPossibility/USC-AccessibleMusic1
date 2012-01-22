@@ -31,7 +31,7 @@ class CallController < ApplicationController
       @new_body = body.sub('create','').strip
     elsif body.match(/^add/)
       @new_body = body.sub('add','').strip
-      @new_body_array = @new_body.sub('to')
+      @new_body_array = @new_body.split('to')
     end
     # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
     # @client.account.sms.messages.create(
