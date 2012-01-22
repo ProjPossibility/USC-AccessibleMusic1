@@ -35,6 +35,8 @@ class HomeController < ApplicationController
     # 
     # sort_common_artists  = common_artist.sort_by {|key, values| -1*values}
     
+    sort_common_artists = []
+    
     sort_common_artists << params[:query]
     
     @tracklist = Array.new  
