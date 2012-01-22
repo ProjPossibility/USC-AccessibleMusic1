@@ -1,7 +1,7 @@
 class Facebook < ActiveRecord::Base
   validates_uniqueness_of :identifier
   validates_uniqueness_of :cell  
-  
+  has_many: playlists
 
   def profile
     @profile ||= FbGraph::User.me(self.access_token).fetch

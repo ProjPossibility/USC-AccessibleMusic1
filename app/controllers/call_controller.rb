@@ -19,13 +19,25 @@ class CallController < ApplicationController
   
   # {"AccountSid"=>"AC5cb9a6dcffb746ada26419b0b9621989", "Body"=>"test", "ToZip"=>"92677", "FromState"=>"CA", "ToCity"=>"LAGUNA NIGUEL", "SmsSid"=>"SM7ac62fadfde51b614605c1e830c9d395", "ToState"=>"CA", "To"=>"+19492720608", "ToCountry"=>"US", "FromCountry"=>"US", "SmsMessageSid"=>"SM7ac62fadfde51b614605c1e830c9d395", "ApiVersion"=>"2010-04-01", "FromCity"=>"IRVINE", "SmsStatus"=>"received", "From"=>"+19492664898", "FromZip"=>"92606", "controller"=>"call", "action"=>"sms"}
   def sms
-    query = params["Body"];
-    number = params["From"];
-    @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
-    @client.account.sms.messages.create(
-      :from => "+19492720608",
-      :to => number,
-      :body => "http://quickstream.heroku.com/home/play?query=#{CGI.escape query}"
-    )
+    body = params["Body"].downcase.strip;
+    # number = params["From"];
+    @new_body_array=[]
+    if body.match(/^play/)
+      @new_body = body.sub('play','').strip
+      if @new_body.match(/^playlist/)
+        @new_body = new_body.sub('playlist','').strip
+      end
+    elsif body.match(/^create/)
+      @new_body = body.sub('create','').strip
+    elsif body.match(/^add/)
+      @new_body = body.sub('add','').strip
+      @new_body_array = new_body.sub('to playlist').strip
+    end
+    # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
+    # @client.account.sms.messages.create(
+    #   :from => "+19492720608",
+    #   :to => number,
+    #   :body => "http://quickstream.heroku.com/home/play?query=#{CGI.escape query}"
+    # )
   end
 end
