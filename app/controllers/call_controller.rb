@@ -1,3 +1,5 @@
+require 'twilio-ruby'
+
 # your Twilio authentication credentials
 ACCOUNT_SID = 'AC5cb9a6dcffb746ada26419b0b9621989'
 ACCOUNT_TOKEN = '4ad536d882cdcf07f36876f264ee560d'
@@ -19,6 +21,7 @@ class CallController < ApplicationController
   def sms
     query = params["Body"];
     number = params["From"];
+    @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
     @client.account.sms.messages.create(
       :from => "+19492720608",
       :to => number,
