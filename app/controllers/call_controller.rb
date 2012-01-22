@@ -34,8 +34,8 @@ class CallController < ApplicationController
     elsif body.match(/^add/)
       @new_body = body.sub('add','').strip
       @new_body_array = @new_body.split('to')
-      @song = @new_body_array[1]
-      @playlist = @new_body_array[2]
+      @song = @new_body_array[0]
+      @playlist = @new_body_array[1]
     end
     # @client = Twilio::REST::Client.new ACCOUNT_SID, ACCOUNT_TOKEN
     # @client.account.sms.messages.create(
