@@ -15,8 +15,14 @@ class CallController < ApplicationController
   def call
   end
   
+  # {"AccountSid"=>"AC5cb9a6dcffb746ada26419b0b9621989", "Body"=>"test", "ToZip"=>"92677", "FromState"=>"CA", "ToCity"=>"LAGUNA NIGUEL", "SmsSid"=>"SM7ac62fadfde51b614605c1e830c9d395", "ToState"=>"CA", "To"=>"+19492720608", "ToCountry"=>"US", "FromCountry"=>"US", "SmsMessageSid"=>"SM7ac62fadfde51b614605c1e830c9d395", "ApiVersion"=>"2010-04-01", "FromCity"=>"IRVINE", "SmsStatus"=>"received", "From"=>"+19492664898", "FromZip"=>"92606", "controller"=>"call", "action"=>"sms"}
   def sms
-    puts "RECEIVED A TEXT"
-    puts params.to_s
+    query = params["Body"];
+    number = params["From"];
+    @client.account.sms.messages.create(
+      :from => "+19492720608",
+      :to => number,
+      :body => "http://quickstream.heroku.com/home/play?query=#{CGI.escape query}"
+    )
   end
 end
