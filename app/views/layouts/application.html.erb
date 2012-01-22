@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <title>Quick Stream</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
+
+  <!--<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+  <link rel="apple-touch-startup-image" href="img/l/splash.png">-->
+
+  <meta http-equiv="cleartype" content="on">
+
+  <meta property="fb:app_id" content="<%= Facebook.config[:client_id] %>">
+  <%= stylesheet_link_tag    "application" %>
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="container">
+
+    <header>
+      <a href="/" class="logo">Quick Stream</a>
+	  <% if authenticated? %>
+	    <%= link_to "Logout", facebook_path, :method => :delete, :class => "logout"%>
+	  <% end %>
+    </header>
+
+
+	<%= yield %>
+	
+    <footer>
+    </footer>
+
+  </div>
+
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+	  FB.init({
+	    appId: "<%= Facebook.config[:client_id] %>",
+	    cookie: true,
+	    xfbml: true,
+	    oauth: true
+	  });
+	</script>
+
+</body>
+</html>

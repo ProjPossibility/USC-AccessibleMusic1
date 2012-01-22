@@ -1,0 +1,21 @@
+<div id="main" role="main">
+  <div class="wrapper">
+
+	<% if authenticated? %>
+		<%= form_tag("facebooks/#{current_user.id}/save_phone/", :remote => true) do %>
+			<%= text_field_tag :phone, nil, :placeholder => 'Enter your phone number' , :value => (current_user.cell.gsub('+1','') if current_user.cell) %> <br/>
+			<%= submit_tag "Save", :class => "button grey play" %>
+		<% end %>
+
+	<% else %>
+        <h2>Discover music the social way.</h2>
+        <p><span class="strong">Quick Stream</span> allows you to voice command your music on the  <span class="strong">fly</span> .</p>
+		<%= link_to "Connect with facebook", new_facebook_path, :class => "button blue" %>
+        <hr class="divider"/>
+        <a href="#" class="button grey">Take a tour</a>
+      </div>
+
+	<% end %>
+
+  </div>
+</div>
